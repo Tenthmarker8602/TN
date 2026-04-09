@@ -1,0 +1,4 @@
+name: TN
+version: '1.0-SNAPSHOT'
+main: me.tenth8602.tN.TN
+api-version: '1.21'
