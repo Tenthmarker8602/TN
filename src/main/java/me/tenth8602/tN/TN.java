@@ -10,14 +10,14 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
-
 import java.util.Objects;
-
+import com.google.gson.Gson;
 public final class TN extends JavaPlugin {
-
+    private AuctionGUI auctionGUI;
     @Override
     public void onEnable() {
         // Plugin startup
+        auctionGUI = new AuctionGUI();
         MiniMessage mm = MiniMessage.miniMessage();
         Audience audience = (Audience) Bukkit.getConsoleSender();
         new BukkitRunnable() {
@@ -38,6 +38,8 @@ public final class TN extends JavaPlugin {
         audience.sendMessage(mm.deserialize("<gradient:#FF0000:#0000FF><b>TN plugin ACTIVE"));
         Bukkit.getPluginManager().registerEvents(new EventListener(), this);
         Objects.requireNonNull(getCommand("test")).setExecutor(new testExecutor());
+        Objects.requireNonNull(getCommand("ah")).setExecutor(new ahExecutor());
+        AuctionManager.init(getDataFolder());
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -73,10 +75,15 @@ public final class TN extends JavaPlugin {
                     if (obj2 == null) continue;
                     obj2.getScore(player.getName()).setScore(amtEmr);
                     obj.getScore(player.getName()).setScore(amtDia);
+                    PlayerData playerData = new PlayerData(player.getUniqueId(), amtDia, amtEmr);
+                    playerData.save(getDataFolder());
                 }
             }
-        }.runTaskTimer(TN.getPlugin(TN.class), 0L, 1L);
+        }.runTaskTimer(TN.getPlugin(TN.class), 0L, 10L);
 
+    }
+    public AuctionGUI getAuctionGUI() {
+        return auctionGUI;
     }
 
     @Override
