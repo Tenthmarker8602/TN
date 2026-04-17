@@ -2,3 +2,8 @@ name: TN
 version: '1.0-SNAPSHOT'
 main: me.tenth8602.tN.TN
 api-version: '1.21'
+commands:
+  test:
+    permission: TN.admin
+    description: "Testing cmd"
+    usage: /test
