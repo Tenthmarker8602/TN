@@ -30,6 +30,7 @@ public class AuctionGUI {
                     "§bDiamonds: " + ai.getDiamonds(),
                     "§aEmeralds: " + ai.getEmeralds(),
                     "§7ID: " + ai.getId(),
+                    "§7Seller: " + Bukkit.getPlayer(ai.getSeller()).getDisplayName(),
                     "§eClick to buy"
             ));
 

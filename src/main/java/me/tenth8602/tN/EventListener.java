@@ -82,9 +82,16 @@ public class EventListener implements Listener {
         String id = idLine.replace("§7ID: ", "").trim();
 
         for (AuctionItem ai : AuctionManager.getListings()) {
-
+            if(ai.getSeller()==player.getUniqueId()){
+                player.getInventory().addItem(
+                        ItemSerializer.fromBase64(ai.getItemBase64())
+                );
+                AuctionManager.remove(ai);
+                player.sendMessage("§aWithdrew!");
+                player.closeInventory();
+                return;
+            }
             if (ai.getId().equals(id)) {
-
                 int diaCost = ai.getDiamonds();
                 int emrCost = ai.getEmeralds();
 
