@@ -7,3 +7,7 @@ commands:
     permission: TN.admin
     description: "Testing cmd"
     usage: /test
+  ah:
+    permission: TN.player
+    description: "Auction house"
+    usage: /ah <page>

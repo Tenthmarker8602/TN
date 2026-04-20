@@ -54,7 +54,6 @@ public final class TN extends JavaPlugin {
                             .stream()
                             .mapToInt(ItemStack::getAmount)
                             .sum();
-                    audience.sendMessage(mm.deserialize("<blue><b>"+player.getDisplayName()+" has :"+amtDia+" Diamonds"));
                     int amtEmr = player.getInventory().all(Material.EMERALD)
                             .values()
                             .stream()
@@ -65,8 +64,6 @@ public final class TN extends JavaPlugin {
                             .stream()
                             .mapToInt(ItemStack::getAmount)
                             .sum();
-                    audience.sendMessage(mm.deserialize("<green><b>"+player.getDisplayName()+" has :"+amtEmr+" Emeralds"));
-
                     Scoreboard board = player.getScoreboard();
 
                     Objective obj = board.getObjective("Diamonds");

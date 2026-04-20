@@ -96,8 +96,8 @@ public class EventListener implements Listener {
                     return;
                 }
 
-                CurrencyUtil.remove(player, Material.DIAMOND, diaCost);
-                CurrencyUtil.remove(player, Material.EMERALD, emrCost);
+                CurrencyUtil.removeDiamonds(player, diaCost);
+                CurrencyUtil.removeEmeralds(player, emrCost);
 
                 player.getInventory().addItem(
                         ItemSerializer.fromBase64(ai.getItemBase64())
